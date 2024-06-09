@@ -1,5 +1,5 @@
 import conf from "@/conf/config";
-import { Account, Client, ID } from "appwrite";
+import { Account, AppwriteException, Client, ID } from "appwrite";
 
 interface CreateUserAccount {
   email: string;
@@ -43,7 +43,7 @@ class AuthService {
   // Login User
   async loginUser({email, password}: LoginUser){
     try {
-      return await account.createSession(email, password);
+      return await account.createEmailPasswordSession(email, password);
     }
     catch (error) {
       console.log("Error: Login Error", error);
@@ -65,9 +65,13 @@ class AuthService {
   // Get Current User
   async getCurrentUser(){
     try {
-      const user = await account.get();
+      const user = await account.get();      
       return user;
-    } catch (error) {
+    } catch (error : any) {
+      if(error instanceof AppwriteException && error.code === 401){
+        return false
+      }
+      
       console.log("Error: Get Current User", error);
     }
     return null;

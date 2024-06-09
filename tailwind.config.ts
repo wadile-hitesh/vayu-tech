@@ -15,7 +15,8 @@ const config: Config = {
       },
       colors : {
         authbg : '#4880FF',
-        authTextColor : '#202224'
+        authTextColor : '#202224',
+        mainbg : '#F5F6FA'
       }
     },
   },
