@@ -19,7 +19,7 @@ function Navbar() {
 
   return (
     <div className='bg-white'>
-      <div className='flex px-4 py-2 mx-8 justify-between'>
+      <div className='flex px-4 py-2 mx-8 justify-between shadow-sm'>
         <div>
           <input
             placeholder='Search'
